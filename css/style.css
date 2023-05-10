@@ -1,0 +1,324 @@
+/*UTILIDADES*/
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+body{
+    margin: 0;
+    background-color: #5a515b;
+}
+/*HEADER*/
+header {
+    background-color: #443a48;
+    height: 60px;
+    margin: 0;
+}
+header nav {
+    display: flex;
+    justify-content: space-around;
+    align-items:last center;
+}
+header nav a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+/*MAIN*/
+main section .botonIngreso button{
+    background-color: #443a48;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+}
+main section.Informacion{
+    display: flex;
+    justify-content: space-around;
+
+}
+main section .agregarInformacion{
+    border: 1px solid black;
+    width: 35%;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .agregarInformacion select{
+    font-size: 20px;
+    background-color: #443a48;
+    color:  white;
+    margin: 10px;
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+}
+main section .agregarInformacion a{
+    background-color: #443a48;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    text-decoration: none;
+    border: 1px solid white;
+}
+main section .agregarInformacion input{
+    font-size: 25px;
+    width: 60%;
+    background-color: #ffffff00;
+    border: 0;
+}
+main section .agregarInformacion span{
+    font-size: 25px;
+    margin-right: 10px;
+
+}
+main section .agregarInformacion input.boton{
+    font-size: 20px;
+    background-color: #443a48;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 250px;
+    border: 1px solid white;
+    transition: all 0.5s;
+}main section .agregarInformacion input.boton:hover{
+    background-color: #c6a7d1;
+    color: black;
+}
+main section {
+    width: 90%;
+    margin: auto;
+    height: 400px;
+}
+main section .porcentajesGastos{
+    width: 60%;
+    border: 1px solid;
+    
+}
+main section .porcentajesGastos ul{
+    font-size: 25px;
+    margin-left: 100px;
+}
+main section.datosGenerales{
+    height: 600px;
+    border: 1px solid;
+    width: 90%;
+    margin-top: 50px;
+}
+main section.datosGenerales .listadoGastos select{
+    font-size: 20px;
+    background-color: #443a48;
+    color:  white;
+    margin: 10px;
+}
+main section .listadoGastos{
+    width: 100%;
+    
+    text-align: center;
+    margin-top: 50px;
+    font-size: 20px;
+}
+main section .listadoGastos span{
+    color: white;
+    text-transform: uppercase;
+}
+section ul.cuentas{
+    display:flex;
+    justify-content: space-evenly;
+    background-color: #443a48;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+section ul.cuentas button{
+    background-color: #443a48;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150px;
+    border: 1px solid white;
+    transition: all 0.5s;
+}
+section ul.cuentas button:hover{
+    background-color: #c6a7d1;
+    color: black;
+}
+/*?LOGIN*/
+main section.login{
+    width: 500px;
+    height: 600px;
+    background-color: #fff;
+    margin-top: 0;
+    background-color: #000000;
+    border-radius: 20px;
+    border: 1px solid white;
+    margin-top: 100px;
+    text-align: center;
+}
+main section.login header{
+    height: 100px;
+    margin-top: 0;
+    border-radius: 20px 20px 0 0;
+}
+main section.login header h1{
+    margin-top: 0;
+    padding-top: 30px;
+}
+main section.login form{
+    height: 25%;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+main section.login form input{
+    font-size: 25px;
+    width: 90%;
+    margin-top: 40px;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: #443a48;
+    color: white;
+    border: 0px;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+main section.login form input.boton{
+    background-color: #443a48;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 150px;
+    border: 1px solid white;
+    transition: all 0.5s;
+}
+main section.login form input.boton:hover{
+    background-color: #c6a7d1;
+    color: black;
+}
+main section.login h4{
+    margin-top: 130px;
+    color: white;
+    text-align: center;
+}
+main section.login a{
+    background-color: #443a48;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 150px;
+    border: 1px solid white;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+main section.login a:hover{
+    background-color: #ffffff;
+    color: black;
+}
+/*?REGISTRO*/
+main section.registro{
+    width: 600px;
+    height: 700px;
+    margin: auto;
+    background-color: black;
+    border-radius: 20px;
+}
+main section.registro header{
+    height: 100px;
+    margin-top: 0;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+}
+main section.registro header h3{
+    margin-top: 0;
+    padding-top: 30px;
+    font-size: 30px;
+}
+main section.registro form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+main section.registro form input{
+    font-size: 25px;
+    width: 90%;
+    margin-top: 40px;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: #443a48;
+    color: white;
+    border: 0px;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+main section.registro form input.boton{
+    background-color: #443a48;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 250px;
+    border: 1px solid white;
+    transition: all 0.5s;
+}
+main section.registro form input.boton:hover{
+    background-color: #c6a7d1;
+    color: black;
+}
+/*?USUARIO*/
+main#usuario{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+main#usuario section#avatar{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: left;
+    width: 30%;
+}
+main#usuario section#avatar input{
+    background-color: #443a48;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 250px;
+    border: 1px solid white;
+    transition: all 0.5s;
+    width: 100%;
+}
+main#usuario section#datosUsuario{
+    font-size: 25px;
+    width: 80%;
+}
+main#usuario section#datosUsuario input{
+    width: 500px;
+    margin-top: 30px;
+    font-size: 25px;
+    background-color: #ffffff00;
+    border: 0;
+    border-bottom: 3px solid #443a48;
+}
+main#usuario section#datosUsuario button{
+    background-color: #443a48;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 250px;
+    border: 1px solid white;
+    transition: all 0.5s;
+    margin-top: 50px;
+}

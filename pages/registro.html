@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Finanzas</title>
+    <script src="https://kit.fontawesome.com/cfb2ddc2a7.js" crossorigin="anonymous"></script>
+    <script>
+        class Usuario{
+    constructor(nombre, apellido, email, password){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+    }
+}
+        function registroUsuario() {
+    let nombreU = document.getElementById("nombre").value;
+    let apellidoU = document.getElementById("apellido").value;
+    let emailU = document.getElementById("email").value;
+    let passwordU = document.getElementById("password").value;
+    //let usuario = [{"nombre": nombreU, "apellido":apellidoU, "email": emailU, "password": passwordU}]
+    let usuarios = new Usuario(nombreU, apellidoU, emailU, passwordU, passwordU)
+    let usuarioJSON = JSON.stringify(usuarios)
+    localStorage.setItem("usuario", usuarioJSON);
+    Swal.fire('Se registro usuario')
+
+}
+    </script>
+</head>
+<body>
+    
+    <main>
+        <section class="registro">
+            <header>
+                <h3>Registro de usuario</h3>
+            </header>
+            <form action="">
+                <input type="text" id="nombre" placeholder="Ingresa tu Nombre">
+                <input type="text" id="apellido" placeholder="Ingresa tu Apellidos">
+                <input type="email" id="email" placeholder="Ingresa tu Correo Electronico">
+                <input type="password" id="password" placeholder="Ingresa tu Contraseña">
+                <input type="password" placeholder="Rectifica tu Contraseña">
+                <input type="submit" onclick="registroUsuario()" value="Registrar Usuario" class="boton">
+            </form>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

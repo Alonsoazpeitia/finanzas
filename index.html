@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Finanzas</title>
+    <script src="https://kit.fontawesome.com/cfb2ddc2a7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="pages/usuario.html">Usuario</a>
+            <a href="pages/balance.html">Balance</a>
+            <a href="#" onclick="cerrarSesion()">Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Gastos del mes</h1>
+        <section class="Informacion">
+            
+            <div class="agregarInformacion">
+                <select id="transaccion">
+                    <option value="">Selecciona la Transacción</option>
+                    <option value="pagos">Pagos/Compras</option>
+                    <option value="movimientos">Movimientos entre Cuentas</option>
+                    <option value="entradas">Entradas de dinero</option>
+                </select>
+                <div id="pagos">
+                    <form action="">
+                        <span>$</span><input type="number" id="montoGasto" placeholder="Monto $0" required>
+                        <select name="FormaPago" id="banco" class="banco" required>
+                            <option value="">Selecciona o Agrega la forma de pago</option>
+                        </select>
+                        <a href="" onclick="addGasto()">+</a>
+                        <select name="gasto" id="select_gasto">
+                            <option value="">Selecciona o Agrega un gasto</option>
+                        </select>
+                        <a href="">+</a>
+                        <select name="clasificacion" id="select_clasificacion" disabled>
+                            <option value="">Selecciona o Agrega una Clasificacion</option>
+                        </select>
+                        <input class="boton" onclick="generarPago();"  id="registrarPago" type="submit" value="Registrar Pago">
+                    </form>
+                </div>
+                <div id="movimientos">
+                    <form action="">
+                        <span>$</span><input type="number" id="montoMovimiento" placeholder="Monto $0">
+                        <select name="origen" id="banco4">
+                            <option value="">Selecciona la cuenta de Origen</option>
+                        </select>
+                        <select name="destino" id="banco5">
+                            <option value="">Selecciona la cuenta de Desatino</option>
+                        </select>
+                        <input class="boton" type="submit" value="Mover Monto">
+                    </form>
+                </div>
+                <div id="entrada">
+                    <form action="">
+                        <span>$</span><input id="montoEntrada" type="number" placeholder="Monto $0">
+                        <select name="cuenta" id="banco2" class="banco">
+                            <option value="">Selecciona la cuenta</option>
+                        </select>
+                        <select name="origen" id="entradas">
+                            <option value="">Selecciona o agrega origen de entrada</option>
+                        </select>
+                        <a href="">+</a>
+                        <input class="boton" type="submit" value="Enviar">
+                    </form>
+                </div>
+            </div>
+            <div class="porcentajesGastos">
+                <h2>Información de Gastos en %</h2>
+                <ul id="sumaDatos">
+                    <li>Casa <span id="casa">0</span>%</li>
+                    <li>Auto <span id="auto">0</span>%</li>
+                    <li>Comida <span id="comida">0</span>%</li>
+                    <li>Otro <span id="otro">0</span>%</li>
+                </ul>
+            </div>
+        </section>
+        <section class="datosGenerales">
+            <div class="listadoGastos">
+                <h2>Lista de gastos</h2>
+                <select name="clasificacionLista" id="clasificacionLista">
+                    <option value="todas">Todas las Clasificaciones</option>
+                    <option value="comida">Comida</option>
+                    <option value="casa">Casa</option>
+                    <option value="auto">Auto</option>
+                    <option value="otro">Otro</option>
+                </select>
+                    <ul id="divDatos"></ul>
+                        <h3>Se pago $ <span>120</span> de <span>Renta</span> el dia <span>8/05/2023</span></h3>
+                        <h3>Se movio $ <span>500</span> de la cuenta <span>BBVA</span> a la cuenta <span>Mercado Pago</span> el dia <span>8/05/2023</span></h3>
+                        <h3>Se Ingreso $ <span>1000</span> a la cuenta <span>BBVA</span> por concepto de <span>Sueldo</span> el dia <span>8/05/2023</span></h3>
+                    </ul>
+            </div>
+        </section>
+    </main>
+    <section>
+        <ul class="cuentas">
+            <h4>Cuenta1: $0.00</h4>
+            <h4>Cuenta2: $0.00</h4>
+            <h4>Cuenta3: $0.00</h4>
+            <button> Agregar Nueva Cuenta</button>
+        </ul>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

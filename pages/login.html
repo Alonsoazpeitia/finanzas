@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Finanzas</title>
+    <script src="https://kit.fontawesome.com/cfb2ddc2a7.js" crossorigin="anonymous"></script>
+    <script>
+        function iniciarSesion() {
+            event.preventDefault();
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("password").value;
+            console.log(email)
+            console.log(pass)
+            const nombreL = JSON.parse(localStorage.getItem("usuario"))
+            console.log(nombreL.email)
+            if(email == nombreL.email && pass == nombreL.password){
+                window.location.href = "../index.html"
+                Swal.fire('Bienvenido')
+                localStorage.setItem("sesion", true);
+            }else{
+                Swal.fire('Datos incorrectos, Registrate para continua')
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <main>
+        
+        <section class="login">
+            <header>
+                <h1>Iniciar Sesión para comenzar</h1>
+            </header>
+            
+            <form action="" class="">
+                <input type="text" id="email" name="email" placeholder="Ingresa tu Email">
+                <input type="password" id="password" name="password" placeholder="Ingresa tu Contraseña">
+                <input type="submit" onclick="iniciarSesion()" value="Ingresar" class="boton">
+            </form>
+            <h4>Si no tienes un registro, favor de registrarse</h4>
+            <a href="registro.html">Registrarse</a>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
