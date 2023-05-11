@@ -18,9 +18,16 @@
             const nombreL = JSON.parse(localStorage.getItem("usuario"))
             console.log(nombreL.email)
             if(email == nombreL.email && pass == nombreL.password){
-                window.location.href = "../index.html"
-                Swal.fire('Bienvenido')
                 localStorage.setItem("sesion", true);
+                Swal.fire({
+                title: 'Bienvenido '+ nombreL.nombre,
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.href = "../index.html"
+                }
+            })
             }else{
                 Swal.fire('Datos incorrectos, Registrate para continua')
             }

@@ -18,15 +18,45 @@
     }
 }
         function registroUsuario() {
+            event.preventDefault();
     let nombreU = document.getElementById("nombre").value;
     let apellidoU = document.getElementById("apellido").value;
     let emailU = document.getElementById("email").value;
     let passwordU = document.getElementById("password").value;
-    //let usuario = [{"nombre": nombreU, "apellido":apellidoU, "email": emailU, "password": passwordU}]
-    let usuarios = new Usuario(nombreU, apellidoU, emailU, passwordU, passwordU)
-    let usuarioJSON = JSON.stringify(usuarios)
-    localStorage.setItem("usuario", usuarioJSON);
-    Swal.fire('Se registro usuario')
+    let passwordU2 = document.getElementById("password2").value;
+    console.log(nombreU, apellidoU, emailU, passwordU, passwordU)
+    if(passwordU == passwordU2){
+        if(nombreU != "" && apellidoU != "" && emailU != "" && passwordU != ""){
+        //let usuario = [{"nombre": nombreU, "apellido":apellidoU, "email": emailU, "password": passwordU}]
+        let usuarios = new Usuario(nombreU, apellidoU, emailU, passwordU, passwordU)
+        let usuarioJSON = JSON.stringify(usuarios)
+        localStorage.setItem("usuario", usuarioJSON);
+        Swal.fire({
+                    title: 'El registro fue exitoso!',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        window.location.href = "../pages/login.html"
+                    }
+                })
+        }else{
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Te faltan datos por llenar!'
+        })
+        }
+        
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Las contraseñas son diferentes!'
+        })
+    }
+    
+    
 
 }
     </script>
@@ -39,11 +69,11 @@
                 <h3>Registro de usuario</h3>
             </header>
             <form action="">
-                <input type="text" id="nombre" placeholder="Ingresa tu Nombre">
-                <input type="text" id="apellido" placeholder="Ingresa tu Apellidos">
-                <input type="email" id="email" placeholder="Ingresa tu Correo Electronico">
-                <input type="password" id="password" placeholder="Ingresa tu Contraseña">
-                <input type="password" placeholder="Rectifica tu Contraseña">
+                <input type="text" id="nombre" placeholder="Ingresa tu Nombre" required>
+                <input type="text" id="apellido" placeholder="Ingresa tu Apellidos" required>
+                <input type="email" id="email" placeholder="Ingresa tu Correo Electronico" required>
+                <input type="password" id="password" placeholder="Ingresa tu Contraseña" required>
+                <input type="password" id="password2" placeholder="Rectifica tu Contraseña" required>
                 <input type="submit" onclick="registroUsuario()" value="Registrar Usuario" class="boton">
             </form>
         </section>

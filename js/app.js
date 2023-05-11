@@ -13,13 +13,14 @@ let montoEntrada = document.getElementById("montoMovimiento").value
 let selectBancoEntrada = document.getElementById("banco2").value
 
 //!ARRAY
+let listaGastos = []
+let listaGastos2 = []
 let clasificaciones = []
 let bancos = []
 let origenEntrada = []
 //origenEntrada.push({"nombre": "Sueldo", "usuario": 0})
 let gastosArray =[]
 let bancosArray = []
-console.log(gastosArray)
 //!objetos
 class Banco{
     constructor(nombre, monto){
@@ -28,10 +29,11 @@ class Banco{
     }
 }
 class Gasto{
-    constructor(monto, banco, nombre, fecha){
+    constructor(monto, banco, nombre, clasificacion, fecha){
         this.monto = monto;
         this.banco = banco;
         this.nombre = nombre;
+        this.clasificacion = clasificacion;
         this.fecha = fecha;
     }
     agregarGastoArray(){
@@ -91,14 +93,36 @@ function generarPago(){
     let montoGasto = document.getElementById("montoGasto").value
     let selectBancoGasto = document.getElementById("banco").value
     let selectNombre_gasto = document.getElementById("select_gasto").value
+    let selectNombre_class = document.getElementById("select_clasificacion").value
     if(montoGasto != "" && selectBancoGasto != "" && selectNombre_gasto != ""){
-        const nuevoGasto = new Gasto(montoGasto, selectBancoGasto, selectNombre_gasto, fecha)
+        const nuevoGasto = new Gasto(montoGasto, selectBancoGasto, selectNombre_gasto,selectNombre_class, fecha)
         gastosArray.push(nuevoGasto);
         console.log(gastosArray)
+
+        if(localStorage.getItem("gasto")){
+            let gastJson = localStorage.getItem("gasto")
+            let gastB= JSON.parse(gastJson)
+            gastB.forEach(gasto => {
+            let nuevodatolocal = new Gasto(`${gasto.monto}`,`${gasto.banco}`,`${gasto.nombre}`,`${gasto.clasificacion}`,`${gasto.fecha}`)
+            gastosArray.push(nuevodatolocal)
+            })
+        }
+
+
         let gastoJson = JSON.stringify(gastosArray)
         localStorage.setItem("gasto", gastoJson);
-        Swal.fire('Se registro Gasto')
-    }else{
+
+        Swal.fire({
+            title: 'Se Registro Gasto correctamente',
+            confirmButtonText: 'Ok',
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                location.reload();
+            }
+          })
+    }
+    else{
         Swal.fire('Faltan campos por llenar')
     }
         
@@ -109,11 +133,10 @@ function addGasto(){
     (async () => {
 
         const { value: banco } = await Swal.fire({
-          title: 'Ingresa nombre de la cuenta o banco',
-          input: 'text',
-          inputLabel: 'Banco',
-          inputPlaceholder: 'Banco'
-          
+            title: 'Ingresa nombre de la cuenta o banco',
+            input: 'text',
+            inputLabel: 'Banco',
+            inputPlaceholder: 'Banco'
         })
         const { value: monto } = await Swal.fire({
             title: 'Ingresa el monto de la cuenta',
@@ -121,16 +144,31 @@ function addGasto(){
             inputLabel: 'Monto',
             inputPlaceholder: 'monto'
             
-          })
+        })
         if (banco && monto) {
-            console.log(`Entered email: ${banco}`)
             let nombreBanco = banco
             let montoBanco = monto
             const nuevoBanco = new Banco(nombreBanco,montoBanco)
             bancosArray.push(nuevoBanco)
-            let bancoJSON = JSON.stringify(bancosArray)
-            localStorage.setItem("bancos", bancoJSON)
+            if(localStorage.getItem("bancos")){
+                let bancoLocalJson = localStorage.getItem("bancos")
+                let arayB= JSON.parse(bancoLocalJson)
+                arayB.forEach(banco => {
+                let nuevodatolocal = new Banco(`${banco.nombre}`,`${banco.monto}`)
+                bancosArray.push(nuevodatolocal)
+                })
+            }
+            localStorage.setItem('bancos', JSON.stringify(bancosArray));
             Swal.fire('Banco agregado correctamente')
+            Swal.fire({
+                title: 'Se Registro Banco correctamente!',
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
         }else{
             Swal.fire('Error en datos')
         }
@@ -142,11 +180,10 @@ function addTipoGasto(){
     (async () => {
 
         const { value: gasto } = await Swal.fire({
-          title: 'Ingresa nombre del Gasto',
-          input: 'text',
-          inputLabel: 'Gasto',
-          inputPlaceholder: 'Gasto'
-          
+            title: 'Ingresa nombre del Gasto',
+            input: 'text',
+            inputLabel: 'Gasto',
+            inputPlaceholder: 'Gasto'
         })
         const { value: clasificacion } = await Swal.fire({
             title: 'Ingresa su Clasificación',
@@ -154,27 +191,88 @@ function addTipoGasto(){
             inputLabel: 'Clasificación',
             inputPlaceholder: 'Clasificación'
             
-          })
+        })
         if (gasto && clasificacion) {
             console.log(`Entered email: ${gasto}`)
-            let nombregasto = gasto
-            let clasificacion2 = clasificacion
-            const nuevoclasificacion = new Clasificacion(nombregasto,clasificacion2)
-            listaGastos.push(nuevoclasificacion)
-            let gastoJSON = JSON.stringify(listaGastos)
-            localStorage.setItem("clasificacion", gastoJSON)
-            Swal.fire('Gasto agregado correctamente')
+            const nuevoclasificacion = new Clasificacion(gasto,clasificacion)
+            listaGastos2.push(nuevoclasificacion)
+            console.log(listaGastos2)
+
+            //bancosArray.push(nuevoBanco)
+            if(localStorage.getItem("clasificacion")){
+                
+                let classJson = localStorage.getItem("clasificacion")
+                let arayclass= JSON.parse(classJson)
+                arayclass.forEach(clas => {
+                let nuevoclasslocal = new Clasificacion(`${clas.gasto}`,`${clas.clasificacion}`)
+                listaGastos2.push(nuevoclasslocal)
+                })
+            }
+            localStorage.setItem('clasificacion', JSON.stringify(listaGastos2));
+            Swal.fire({
+                title: 'Clasificacion agregado correctamente',
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
         }else{
             Swal.fire('Error en datos')
         }
         
         })()
+
+
+
+/*          listaGastos.push(nuevoclasificacion)
+            let gastoJSON = JSON.stringify(listaGastos)
+            localStorage.setItem("clasificacion", gastoJSON)
+            Swal.fire('Gasto agregado correctamente')
+            location.reload();
+        }else{
+            Swal.fire('Error en datos')
+        }
+        
+        })()*/
 }
+llenadoSelect();
 function cerrarSesion(){
     localStorage.setItem("sesion", false);
     window.location.href = "./pages/login.html"
 }
+//jalamos datos de la BD similada
+async function llenadoSelect(){
+    const resp = await fetch('./js/DB.json')
+    listaGastos = await resp.json()
+    
+    console.log(listaGastos)
 
+   //if(localStorage.getItem("clasificacion")){
+        console.log("entro aqui")    
+        let classJson2 = localStorage.getItem("clasificacion")
+        let arayclass2= JSON.parse(classJson2)
+        arayclass2.forEach(clas2 => {
+        let nuevoclasslocal2 = new Clasificacion(`${clas2.gasto}`,`${clas2.clasificacion}`)
+        listaGastos2.push(nuevoclasslocal2)
+        console.log(listaGastos2)
+      })
+    //  }
+
+    let listadoGastos = listaGastos.concat(listaGastos2)
+    console.log(listadoGastos)
+
+  
+    listadoGastos.forEach(gasto => {
+        let select_gasto = document.getElementById("select_gasto")
+        let contenido = `${gasto.gasto}`
+        let option = document.createElement("option")
+        option.text = contenido
+        option.value = contenido
+        select_gasto.add(option)
+    })
+}
 
 
 //se cargan los bancos guardados en el array
@@ -251,21 +349,6 @@ if(localStorage.getItem("bancos")){
         select_banco5.add(option)
     })
 }
-//jalamos datos de la BD similada
-async function llenadoSelect(){
-    const resp = await fetch('./js/DB.json')
-    let listaGastos = await resp.json()
-  
-    listaGastos.forEach(gasto => {
-        let select_gasto = document.getElementById("select_gasto")
-        let contenido = `${gasto.gasto}`
-        let option = document.createElement("option")
-        option.text = contenido
-        option.value = contenido
-        select_gasto.add(option)
-    })
-}
-llenadoSelect();
 //con esta funcion validamos el contenido del select de la clasificacion y filtramos
 //dependiendo del gasto
 let select_g = document.getElementById("select_gasto")
@@ -275,8 +358,10 @@ select_g.addEventListener('change', function(){
     async function llenadoSelectClasificacion(){
         const respuesta = await fetch('./js/DB.json')
         let listaGastosClasificacion = await respuesta.json()
+
+        let todoslosGastos = listaGastosClasificacion.concat(listaGastos2)
         console.log("entro a la asincronia")
-        listaGastosClasificacion.forEach(gasto => {
+        todoslosGastos.forEach(gasto => {
             let contenido = `${gasto.gasto}`
             if(select_g == contenido){
                 let clasificacion = `${gasto.clasificacion}`
@@ -294,3 +379,34 @@ select_g.addEventListener('change', function(){
     }
     llenadoSelectClasificacion()
 });
+//!grafica  
+anychart.onDocumentLoad(function () {
+    if(localStorage.getItem("gasto")){
+        let gastJson = localStorage.getItem("gasto")
+        let gastB= JSON.parse(gastJson)
+        gastB.forEach(gasto => {
+        let nuevodatolocal = new Banco(`${banco.nombre}`,`${banco.monto}`)
+        bancosArray.push(nuevodatolocal)
+        })
+    }
+
+
+
+
+    // create an instance of a pie chart
+    var chart = anychart.pie();
+    // set the data
+    chart.data([
+      ["Chocolate", 5],
+      ["Rhubarb compote", 2],
+      ["Crêpe Suzette", 2],
+      ["American blueberry", 2],
+      ["Buttermilk", 1]
+    ]);
+    // set chart title
+    chart.title("Porcentages de gastos");
+    // set the container element 
+    chart.container("grafica");
+    // initiate chart display
+    chart.draw();
+  });

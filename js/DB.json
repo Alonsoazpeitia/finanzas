@@ -1,79 +1,53 @@
 [
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Despensa",
         "clasificacion": "Comida"
     },
     {
-        "id":2,
-        "usuario": 0,
         "gasto": "Gasolina",
         "clasificacion": "Auto"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Alquiler",
         "clasificacion": "Casa"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Plataformas",
         "clasificacion": "Diverción"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Escuela",
         "clasificacion": "Educación"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Doctor",
         "clasificacion": "Salud"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Comidas fuera/Pedidas",
         "clasificacion": "Comida"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Pago de Auto",
         "clasificacion": "Auto"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Luz, Agua",
         "clasificacion": "Servicios"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Internet",
         "clasificacion": "Servicios"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Ahorro",
         "clasificacion": "Ahorro"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Otro",
         "clasificacion": "Otro"
     },
     {
-        "id":1,
-        "usuario": 0,
         "gasto": "Salidas",
         "clasificacion": "Diverción"
     }
