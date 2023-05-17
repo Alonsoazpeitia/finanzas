@@ -187,7 +187,18 @@ function addTipoGasto(){
         })
         const { value: clasificacion } = await Swal.fire({
             title: 'Ingresa su Clasificación',
-            input: 'text',
+            input: 'select',
+            inputOptions: {
+                    Comida: 'Comida',
+                    Auto: 'Auto',
+                    Casa: 'Casa',
+                    Diverción: 'Diverción',
+                    Salud: 'Salud',
+                    Servicios: 'Servicios',
+                    Ahorro: 'Ahorro',
+                    Educación: 'Educación',
+                    Otro: 'Otro'
+                },
             inputLabel: 'Clasificación',
             inputPlaceholder: 'Clasificación'
             
@@ -247,21 +258,21 @@ async function llenadoSelect(){
     const resp = await fetch('./js/DB.json')
     listaGastos = await resp.json()
     
-    console.log(listaGastos)
+    
 
    //if(localStorage.getItem("clasificacion")){
-        console.log("entro aqui")    
+         
         let classJson2 = localStorage.getItem("clasificacion")
         let arayclass2= JSON.parse(classJson2)
         arayclass2.forEach(clas2 => {
         let nuevoclasslocal2 = new Clasificacion(`${clas2.gasto}`,`${clas2.clasificacion}`)
         listaGastos2.push(nuevoclasslocal2)
-        console.log(listaGastos2)
+        
       })
     //  }
 
     let listadoGastos = listaGastos.concat(listaGastos2)
-    console.log(listadoGastos)
+    
 
   
     listadoGastos.forEach(gasto => {
@@ -389,19 +400,65 @@ anychart.onDocumentLoad(function () {
         bancosArray.push(nuevodatolocal)
         })
     }
-
-
-
-
+    //filtramos las variables de cada gasto de local storage
+    let gastosLocalStorage = localStorage.getItem("gasto")
+    let parsegastosLocalStorage = JSON.parse(gastosLocalStorage)
+    let totalCasa = 0
+    let totalComida = 0
+    let totalAuto = 0
+    let totalSalud = 0
+    let totalEducacion = 0
+    let totalDivercion = 0
+    let totalOtro = 0
+    let totalServicios = 0
+    let totalAhorro = 0
+  parsegastosLocalStorage.forEach(gastoLS => {
+    switch (gastoLS.clasificacion) {
+        case "Comida":
+            totalComida = totalComida + parseInt(gastoLS.monto)
+            break;
+            case "Casa":
+            totalCasa = totalCasa + parseInt(gastoLS.monto)
+            break;
+            case "Auto":
+            totalAuto = totalAuto + parseInt(gastoLS.monto)
+            break;
+            case "Salud":
+            totalSalud = totalSalud + parseInt(gastoLS.monto)
+            break;
+            case "Educación":
+            totalEducacion = totalEducacion+  parseInt(gastoLS.monto)
+            break;
+            case "Diversión":
+            totalDivercion = totalDivercion + parseInt(gastoLS.monto)
+            break;
+            case "Servicios":
+            totalServicios = totalServicios + parseInt(gastoLS.monto)
+            case "Ahorro":
+            totalAhorro = totalAhorro + parseInt(gastoLS.monto)
+            case "Otro":
+            totalOtro = totalOtro + parseInt(gastoLS.monto)
+            break;
+    
+        default:
+            break;
+    }
+      //let contenido = `${gastoLS.nombre}`
+      
+  })
     // create an instance of a pie chart
     var chart = anychart.pie();
     // set the data
     chart.data([
-      ["Chocolate", 5],
-      ["Rhubarb compote", 2],
-      ["Crêpe Suzette", 2],
-      ["American blueberry", 2],
-      ["Buttermilk", 1]
+      ["Casa", totalCasa],
+      ["Comida", totalComida],
+      ["Auto", totalAuto],
+      ["Salud", totalSalud],
+      ["Educación", totalEducacion],
+      ["Servicios", totalServicios],
+      ["Ahorro", totalAhorro],
+      ["Diversión", totalDivercion],
+      ["Otro", totalOtro]
     ]);
     // set chart title
     chart.title("Porcentages de gastos");
@@ -410,3 +467,15 @@ anychart.onDocumentLoad(function () {
     // initiate chart display
     chart.draw();
   });
+
+
+  let gastosLocalS = localStorage.getItem("gasto")
+  let parsegastosLocalS4 = JSON.parse(gastosLocalS)
+  console.log(parsegastosLocalS4)
+  parsegastosLocalS4.forEach(gastoL => {
+    console.log(gastoL.nombre)
+    let listaGastos4 = document.getElementById("divDatos")
+        let etiqueta = document.createElement("h3")
+        etiqueta.innerHTML = `<h3>Se pago $ <span> ${gastoL.monto} </span> de <span>${gastoL.nombre}</span> el dia <span>${gastoL.fecha}</span></h3>`
+        listaGastos4.appendChild(etiqueta)
+})

@@ -108,10 +108,12 @@ main section .porcentajesGastos ul{
     margin-left: 100px;
 }
 main section.datosGenerales{
-    height: 600px;
+    height: 400px;
+    overflow: scroll;
     border: 1px solid;
     width: 90%;
     margin-top: 50px;
+    margin-bottom: 70px;
 }
 main section.datosGenerales .listadoGastos select{
     font-size: 20px;
@@ -135,7 +137,7 @@ section ul.cuentas{
     justify-content: space-evenly;
     background-color: #443a48;
     position: fixed;
-    bottom: 0;
+    bottom: -15px;
     width: 100%;
 }
 section ul.cuentas button{
